@@ -4,14 +4,23 @@ const Plot = dynamic(() => import("react-plotly.js"), { ssr: false });
 import { PlotParams } from "react-plotly.js";
 import commonCrime from "../pages/api/commonCrime.json";
 
-type Props = {};
+type Props = {
+  setShowTooltip: React.Dispatch<React.SetStateAction<ToolTip | null>>;
+};
+
+export interface ToolTip {
+  precinct: number;
+  crimeTotal: number;
+  commonCrime: string;
+  commonCrimeTotal: number;
+}
 
 type plotlyData = {
   data: Array<any>;
   layout: Object;
 };
 
-const PlotlyComponent = (props: Props) => {
+const PlotlyComponent = ({ setShowTooltip }: Props) => {
   const [plotlyData, setPlotlyData] = useState<plotlyData>({
     data: [],
     layout: {},
@@ -63,6 +72,17 @@ const PlotlyComponent = (props: Props) => {
 
         // @ts-ignore
         console.log(prec, e.points[0].z, commonCrime[prec]);
+        setShowTooltip({
+          precinct: prec,
+          crimeTotal: e.points[0].z,
+          // @ts-ignore
+          commonCrime: commonCrime[prec][0],
+          // @ts-ignore
+          commonCrimeTotal: commonCrime[prec][1],
+        });
+      }}
+      onUnhover={(e: any) => {
+        setShowTooltip(null);
       }}
     />
   );

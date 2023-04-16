@@ -72,7 +72,8 @@ def create_map():
                            )
 
 
-    fig.update_traces(hovertemplate="Precinct [%{location}]<br>Total Crimes: %{z}<br>")
+    # fig.update_traces(hovertemplate="Precinct [%{location}]<br>Total Crimes: %{z}<br>")
+    fig.update_traces(hovertemplate="", hoverinfo="none")
     fig.update_layout(coloraxis_colorbar_x=1)
 
     return pi.to_json(fig)
