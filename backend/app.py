@@ -31,14 +31,27 @@ def precinct_search(precinct, crime = None):
     if(crime == None):
         return len(df.loc[df['PDQ'] == precinct])
     else:
-        return len(df.loc[(df['PDQ'] == precinct) & (df['Category'] == crime)])
+        return len(df.loc[(df['PDQ'] == precinct) & (df['CATEGORY'] == crime)])
 
 @app.route('/crime_search/<crime>')
 def crime_search(crime, precinct = None):
     if(precinct == None):
-        return len(df.loc[df['Category'] == crime])
+        return len(df.loc[df['CATEGORY'] == crime])
     else:
-        return len(df.loc[(df['PDQ'] == precinct) & (df['Category'] == crime)])
+        return len(df.loc[(df['PDQ'] == precinct) & (df['CATEGORY'] == crime)])
+
+@app.route('/common_crime')
+def common_crime():
+    x = ['BREAKING AND ENTERING', 'MISCHIEF', 'THEFT FROM/TO A MOTOR VEHICLE', 'ROBBERY', 'MOTOR VEHICLE THEFT', 'MURDER RESULTING IN DEATH']
+   
+    d = dict()
+    for y in l:
+        b = []
+        for i in x:
+            b.append((i, len(df.loc[(df['PDQ'] == y) & (df['CATEGORY'] == i)])))
+            
+        d[y] = sorted(b, key = lambda x: x[1], reverse = True)[0]
+    return d
 
 @app.route('/create_map')
 def create_map():
@@ -51,15 +64,16 @@ def create_map():
     fig = px.choropleth_mapbox(totalcrimes, geojson=geojson, 
                            color = "Count", 
                            locations="PDQ", featureidkey="properties.PDQ",
-                           center={'lat': 45.508888, 'lon': -73.561668}, 
-                           mapbox_style="carto-positron", 
+                           center={'lat': 45.508888, 'lon': -73.689931}, 
+                           mapbox_style="dark", 
                            zoom=9,
-                           opacity=.5,
-                           color_continuous_scale=px.colors.sequential.Peach,
+                           opacity=.6,
+                           color_continuous_scale=px.colors.sequential.YlOrRd,
                            )
 
-    
-    # fig.update_layout(margin={"r":10,"t":10,"l":10,"b":100})
+
+    fig.update_traces(hovertemplate="Precinct [%{location}]<br>Total Crimes: %{z}<br>")
+    fig.update_layout(coloraxis_colorbar_x=1)
 
     return pi.to_json(fig)
     

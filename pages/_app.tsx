@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import "@/styles/mapbox-overrides.css";
 import type { AppProps } from "next/app";
 
 import { Cardo, Manrope } from "next/font/google";

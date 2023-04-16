@@ -7,8 +7,9 @@ export default function Home() {
       <Head>
         <title>Montreal Search</title>
       </Head>
-      <main className="w-screen h-screen flex flex-col items-center font-primary">
+      <main className="w-screen h-screen flex flex-col items-center font-primary bg-slate-700">
         <PlotlyComponent />
+        <div className="absolute top-24 left-28 w-48 h-32 bg-slate-800 rounded-lg"></div>
         {/* <h1 className="text-3xl font-title">Montreal Crime Dashboard</h1>
         <form>
           <input
