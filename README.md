@@ -1,38 +1,41 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Montreal Crime Analysis
+[Devpost](https://devpost.com/software/montreal-crime-analysis-62zasd)
+## Our Project
 
-## Getting Started
+As a group we chose to analyze the Montreal Crime data and make policy recommendations based off what we observed.
+We also created a web page that has a work in progress dashboard to present overall crime numbers for each precinct
 
-First, run the development server:
+## Methodology
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Our first step was to immediately begin creating a viable search function for the data set allowing us to pull up necessary information. We have two primary search functions that supported our analysis. 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Raw Analysis
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Top Three Crimes: 
+Theft from/to a motor vehicle
+Breaking and entering, 
+Mischief
+Murder Count: 230
+Police Precincts with the most crimes:
+Precinct 38 (17496)
+Precinct 21 (14549)
+Precinct 20 (13805)
+Police Precinct with least number of crimes (Omitting Special Precincts)
+Precinct 11 (Kirkland)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Cross Referencing with Zip Codes
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+A mainstay of discussions about crime rates and safety is the overall economic stability and prosperity of an area. Taking this into account, we took the top three precincts and their neighborhoods and cross referenced that with their zip codes recorded median household income.
+Precinct 38: $59,000 
+Precinct 21 and 20: $58,000
+Both precincts are under the median income for a household in montreal which is $63,000
+Further Precinct 38 has the highest number of youth residents in Montreal and Precinct 21 and 20 encompass all of Downtown Montreal. 
+On the other side is Precinct 11, with a median income of $110,000
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Policy Changes
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Increased investment in low-income areas
+Focus on break in/theft related crimes as murder rates while significant are not as high
+Youth adolescent outreach programs
+Focus on gentrification impacts
